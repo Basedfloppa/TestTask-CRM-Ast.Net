@@ -1,0 +1,43 @@
+﻿@model List<TestTask.db.Client>
+
+@{
+    ViewBag.Title = "Clients";
+}
+
+<h2>Clients</h2>
+
+<table class="table">
+    <tr>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Sur Name</th>
+        <th>Birth Date</th>
+        <th>Account Number</th>
+        <th>INN</th>
+        <th>Status</th>
+        <th>Action</th>
+    </tr>
+    @foreach (var client in Model)
+    {
+        <tr>
+            <td>@client.FirstName</td>
+            <td>@client.LastName</td>
+            <td>@client.SurName</td>
+            <td>@client.BirthDate</td>
+            <td>@client.AccountNumber</td>
+            <td>@client.Inn</td>
+            <td>@client.Status</td>
+            <td>
+                <form>
+                    @Html.Hidden("clientUuid", client.Uuid)
+                    <select name="newStatus">
+                        <option value="В работе">В работе</option>
+                        <option value="Отказ">Отказ</option>
+                        <option value="Сделка закрыта">Сделка закрыта</option>
+                    </select>
+                    <button type="submit">Change Status</button>
+                </form>
+            </td>
+        </tr>
+    }
+</table>
